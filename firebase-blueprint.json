@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated creator profile for OmniCore cloud sync",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID" },
+        "displayName": { "type": "string", "description": "Creator display name" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp" }
+      },
+      "required": ["userId", "displayName", "createdAt", "updatedAt"]
+    },
+    "StudioProject": {
+      "title": "StudioProject",
+      "description": "Saved 3D OmniCore scene project with objects, keyframes, and geometry mode",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner Firebase Auth UID" },
+        "name": { "type": "string", "description": "Project title" },
+        "geometryMode": { "type": "string", "enum": ["SMOOTH_ORGANIQUE", "VOXEL_MODULAIRE"] },
+        "renderEngine": { "type": "string", "enum": ["POLYX3D_MOBILE", "AAA_REALISME"] },
+        "nodeCount": { "type": "integer", "description": "Number of scene nodes" },
+        "keyframeCount": { "type": "integer", "description": "Number of saved animation keyframes" },
+        "sceneSummary": { "type": "string", "description": "Serialized compact scene summary" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp" }
+      },
+      "required": ["userId", "name", "geometryMode", "renderEngine", "nodeCount", "keyframeCount", "sceneSummary", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Creator profile document"
+    },
+    "/users/{userId}/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/StudioProject" },
+      "description": "User-owned saved 3D OmniCore projects"
+    }
+  }
+}

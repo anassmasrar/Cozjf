@@ -1,0 +1,6 @@
+{
+  "name": "OmniCore",
+  "description": "OmniCore — Studio unifié de modélisation 3D Smooth/Voxel, rigging neural IK, création de jeux et mods .jar, hub communautaire et pont sans fil.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
